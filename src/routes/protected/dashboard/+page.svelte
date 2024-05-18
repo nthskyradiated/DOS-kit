@@ -16,7 +16,7 @@
 </script>
 
 <section class="flex flex-wrap items-center gap-4">
-	<div>
+	<div class="flex flex-col gap-8">
 		<h1 class="mb-5 text-2xl">
 			<span class="font-bold"
 				>{loggedInUser.name || loggedInUser.username || loggedInUser.email}'s Dashboard</span

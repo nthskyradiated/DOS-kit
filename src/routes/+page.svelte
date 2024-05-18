@@ -3,30 +3,38 @@
 	import { goto } from '$app/navigation';
 </script>
 
-<h1>Welcome to LSD kit template</h1>
-<p>Visit LSD's<a href="https://github.com/nthskyradiated/lsd-kit">Github repo</a> to learn more.</p>
+<header class='w-full mb-10 text-start my-12'>
+	<h1>LSD kit template</h1>
+	<p>Visit LSD's <a href="https://github.com/nthskyradiated/lsd-kit" target="_blank">Github repo</a> to learn more.</p>
+</header>
 
-<Button
-	type="button"
-	on:click={() => {
-		goto('auth/login');
-	}}>Log in with Email</Button
->
-<Button
-	type="button"
-	on:click={() => {
-		goto('auth/register');
-	}}>Register</Button
->
-<Button
-	type="button"
-	on:click={() => {
-		goto('/auth/github');
-	}}>Continue with Github</Button
->
-<Button
-	type="button"
-	on:click={() => {
-		goto('/auth/google');
-	}}>Continue with Google</Button
->
+<main class="flex flex-row justify-evenly align-center w-auto m-auto">
+	<div class="flex flex-col gap-4 w-64 mx-auto">
+		<Button
+			type="button"
+			on:click={() => {
+				goto('auth/login');
+			}}>Log in with Email</Button
+		>
+		<Button
+			type="button"
+			on:click={() => {
+				goto('auth/register');
+			}}>Register</Button
+		>
+		<Button
+			type="button"
+			on:click={() => {
+				goto('/auth/github');
+			}}>Continue with Github</Button
+		>
+		<Button
+			type="button"
+			on:click={() => {
+				goto('/auth/google');
+			}}>Continue with Google</Button
+		>
+	
+	</div>
+
+</main>	

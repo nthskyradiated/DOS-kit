@@ -27,7 +27,7 @@
 <ModeWatcher />
 <div class="mx-64 flex min-h-[100%] w-auto flex-col">
 	{#if data.user}
-		<h1 class="py-10">Logged in as :: {data.user?.name ?? data.user.username}</h1>
+		<h1 class="py-10 text-right">Logged in as :: {data.user?.name ?? data.user.username}</h1>
 	{/if}
 	<slot />
 </div>
