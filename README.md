@@ -21,4 +21,10 @@
   \
   &nbsp;
   
-  - Uses Zod for schema validation.   
+- Uses Zod for schema validation.  
+ \
+  &nbsp;
+
+- Uses Shadcn-svelte as its component library.  
+ \
+  &nbsp;
