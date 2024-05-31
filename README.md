@@ -20,11 +20,10 @@
 - .env sample provided.
   \
   &nbsp;
-  
 - Uses Zod for schema validation.  
- \
-  &nbsp;
+  \
+   &nbsp;
 
 - Uses Shadcn-svelte as its component library.  
- \
-  &nbsp;
+  \
+   &nbsp;

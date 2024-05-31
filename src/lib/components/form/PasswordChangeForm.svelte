@@ -19,8 +19,8 @@
 
 	export let formData: SuperValidated<passwordResetZodSchema>;
 	export let isPasswordResetTokenRequired: boolean = false;
-	export let formAction
-	
+	export let formAction;
+
 	$: open = false;
 
 	const { enhance, form, errors, message, delayed } = superForm(formData, {

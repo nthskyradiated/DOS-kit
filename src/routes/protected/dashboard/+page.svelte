@@ -11,7 +11,6 @@
 	const nameInitial = data.user?.name?.charAt(0).toUpperCase();
 	const emailInitial = data.user?.email.charAt(0).toUpperCase();
 	const isOnlyOauthUser = !loggedInUser.authMethods.includes('email');
-
 </script>
 
 <section class="mx-4 my-12 w-96 gap-4 sm:mx-auto lg:w-full">
@@ -21,25 +20,28 @@
 				>{loggedInUser.name || loggedInUser.username || loggedInUser.email}'s Dashboard</span
 			>
 		</h1>
-		<Card class="flex flex-row gap-2 justify-center w-2/5 py-8 px-6">
-			<div class="flex flex-col gap-4 w-full">
-					<Avatar.Root class="size-20">
-						<Avatar.Image src={data.user?.avatarUrl} alt="User Avatar" />
-						<Avatar.Fallback class="text-5xl">
-							{nameInitial || emailInitial}
-						</Avatar.Fallback>
-					</Avatar.Root>
-					<div class="flex gap-2">
-						{#if isOnlyOauthUser === false}
-							<PasswordChangeForm formData={data.passwordResetFormData} formAction={route('changePassword /dashboard')} />
-						{/if}
-					</div>
+		<Card class="flex w-2/5 flex-row justify-center gap-2 px-6 py-8">
+			<div class="flex w-full flex-col gap-4">
+				<Avatar.Root class="size-20">
+					<Avatar.Image src={data.user?.avatarUrl} alt="User Avatar" />
+					<Avatar.Fallback class="text-5xl">
+						{nameInitial || emailInitial}
+					</Avatar.Fallback>
+				</Avatar.Root>
+				<div class="flex gap-2">
+					{#if isOnlyOauthUser === false}
+						<PasswordChangeForm
+							formData={data.passwordResetFormData}
+							formAction={route('changePassword /dashboard')}
+						/>
+					{/if}
 				</div>
-				<div class="flex flex-col gap-2 w-full">
-					<p>Email: {loggedInUser.email}</p>
-					<p>Name: {loggedInUser.name}</p>
-					<p>Username: {loggedInUser.username}</p>
-				</div>
-			</Card>
+			</div>
+			<div class="flex w-full flex-col gap-2">
+				<p>Email: {loggedInUser.email}</p>
+				<p>Name: {loggedInUser.name}</p>
+				<p>Username: {loggedInUser.username}</p>
+			</div>
+		</Card>
 	</div>
 </section>
