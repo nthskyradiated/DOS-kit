@@ -7,8 +7,8 @@
 	let isLoading = false;
 </script>
 
-<main class="align-center mx-4 min-h-96 w-96 sm:mx-auto">
-	<div class="mx-auto flex w-64 flex-col gap-4">
+<main class="mx-auto min-h-96 w-auto items-center">
+	<div class="flex w-64 flex-col gap-4">
 		<Button
 			type="button"
 			on:click={() => {
@@ -37,7 +37,7 @@
 			{#if isLoading}
 				<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 			{:else}
-			<Icon icon="line-md:github-loop" class="mr-2 h-6 w-6" />
+				<Icon icon="line-md:github-loop" class="mr-2 h-6 w-6" />
 			{/if}
 			Continue with GitHub
 		</Button>

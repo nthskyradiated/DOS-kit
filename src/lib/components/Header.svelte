@@ -1,9 +1,8 @@
 <script>
-
-	import ThemeToggler from "./ThemeToggler.svelte";
-
+	import ThemeToggler from './ThemeToggler.svelte';
 </script>
-<header class="my-12 mb-32 w-full text-start flex flex-row gap-4">
+
+<header class="my-12 mb-32 ml-4 mr-10 flex w-full flex-row gap-4 text-start sm:ml-8">
 	<ThemeToggler />
 	<div>
 		<h1 class="mb-2 text-3xl font-bold leading-none">LSD kit</h1>

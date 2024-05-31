@@ -9,7 +9,7 @@
 </script>
 
 <div
-	class="mx-4 flex min-h-96 w-96 flex-col justify-start space-y-4 text-center sm:mx-auto lg:w-1/3"
+	class="mx-auto flex min-h-96 w-80 flex-col items-center justify-start space-y-4 text-center lg:w-1/3"
 >
 	{#if data.passwordResetTokenStatus.isValid === false}
 		<h1 class="mb-5 text-2xl font-bold text-red-600">

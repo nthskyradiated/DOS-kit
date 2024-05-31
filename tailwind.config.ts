@@ -56,6 +56,9 @@ const config: Config = {
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans]
+			},
+			screens: {
+				xs: '576px'
 			}
 		}
 	}

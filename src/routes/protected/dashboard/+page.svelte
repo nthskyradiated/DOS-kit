@@ -13,14 +13,17 @@
 	const isOnlyOauthUser = !loggedInUser.authMethods.includes('email');
 </script>
 
-<section class="mx-4 my-12 w-96 gap-4 sm:mx-auto lg:w-full">
+<section class="mx-auto my-12 w-80 gap-4 md:ml-12 md:w-full">
 	<div class="flex flex-col gap-8">
 		<h1 class="mb-5 text-2xl">
 			<span class="font-bold"
 				>{loggedInUser.name || loggedInUser.username || loggedInUser.email}'s Dashboard</span
 			>
 		</h1>
-		<Card class="flex w-2/5 flex-row justify-center gap-2 px-6 py-8">
+
+		<Card
+			class="flex w-full flex-col justify-center gap-8 px-6 py-8 sm:gap-2 md:max-w-md md:flex-row"
+		>
 			<div class="flex w-full flex-col gap-4">
 				<Avatar.Root class="size-20">
 					<Avatar.Image src={data.user?.avatarUrl} alt="User Avatar" />

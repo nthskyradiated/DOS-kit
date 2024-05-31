@@ -35,7 +35,7 @@
 <!-- <SuperDebug data={$form} /> -->
 <Toaster />
 <!-- done! do not touch! -->
-<div class="mx-4 min-h-96 w-96 space-y-4 sm:mx-auto lg:w-1/3">
+<div class="mx-auto min-h-96 w-80 items-center lg:w-1/3">
 	<h1 class="mb-6 text-2xl font-bold leading-none">Register</h1>
 	<form
 		method="post"
@@ -82,6 +82,6 @@
 			label="Password"
 		/>
 
-		<SubmitButton class="w-1/6">Register</SubmitButton>
+		<SubmitButton class="w-2/6">Register</SubmitButton>
 	</form>
 </div>
