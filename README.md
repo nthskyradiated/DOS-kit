@@ -9,11 +9,11 @@
   \
   &nbsp;
 
-- Password reset through email enabled (via Resend).
+- Uses Sqlite3 with Better-sqlite3
   \
   &nbsp;
 
-- Email verification also enabled (via resend).
+- Password reset & email verification through email enabled (Resend).
   \
   &nbsp;
 
@@ -24,6 +24,9 @@
   \
    &nbsp;
 
-- Uses Shadcn-svelte as its component library.  
+- Uses Shadcn-svelte for its component library and TailwindCSS for styling.  
+  \
+   &nbsp;
+- Sveltekit Superforms for form handling.
   \
    &nbsp;
