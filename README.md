@@ -13,7 +13,7 @@
   \
   &nbsp;
 
-- Password reset & email verification through email enabled (Resend).
+- Password reset & email verification through email enabled (Plunk or Resend).
   \
   &nbsp;
 

@@ -67,6 +67,15 @@ export const actions: Actions = {
 				existingUser.password,
 				userLoginFormData.data.password
 			);
+		} else if (existingUser.authMethods.length === 0 && existingUser.password) {
+			throw flashMessageRedirect(
+				route('/auth/email-verification'),
+				{
+					type: 'error',
+					message: 'You must verify your email before logging in.'
+				},
+				cookies
+			);
 		} else {
 			// If the user doesn't have a password, it means they registered with OAuth
 			return message(
