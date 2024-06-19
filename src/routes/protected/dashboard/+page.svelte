@@ -1,10 +1,9 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import { route } from '@/lib/router';
 	import PasswordChangeForm from '@/lib/components/form/PasswordChangeForm.svelte';
 	import Card from '@/lib/components/ui/card/card.svelte';
-	export let data: PageData;
+	let { data } = $props();
 
 	const { loggedInUser } = data;
 

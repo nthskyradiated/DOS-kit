@@ -1,3 +1,8 @@
+import type { HTMLButtonAttributes, HTMLInputAttributes } from 'svelte/elements';
+import type { SuperValidated } from 'sveltekit-superforms';
+import type { passwordResetZodSchema } from './zodValidators/zodAuthValidation';
+import type { Snippet } from 'svelte';
+
 export type AlertMessageType = {
 	alertType: 'success' | 'error' | 'warning' | 'info';
 	alertText: string;
@@ -53,4 +58,35 @@ export type GoogleUser = {
 	email: string;
 	email_verified: boolean;
 	locale: string;
+};
+
+export type InputFieldProps = {
+	type: HTMLInputAttributes['type'];
+	value: string | number | null | undefined;
+	name: string;
+	label?: string;
+	placeholder?: string;
+	spellcheck?: boolean;
+	autocomplete?: string;
+	enterkeyhint?: EnterKeyHintType;
+	maxlength?: number | undefined;
+	minlength?: number | undefined;
+	errorMessage?: object | undefined;
+	className?: HTMLInputAttributes['class'];
+	step?: HTMLInputAttributes['step'];
+};
+
+export type PasswordChangeFormProps = {
+	formData: SuperValidated<passwordResetZodSchema>;
+	isPasswordResetTokenRequired?: boolean;
+	formAction: string;
+};
+
+export type BtnProps = {
+	disabled?: boolean;
+	formaction?: string | null;
+	showSpinner?: boolean | null;
+	// class?: string | HTMLButtonAttributes['class']
+	className?: HTMLButtonAttributes['class'];
+	children: Snippet;
 };
