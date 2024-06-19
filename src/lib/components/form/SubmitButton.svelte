@@ -1,16 +1,15 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
-
 	import { cn } from '$lib/utils';
-
 	import Button from '../ui/button/button.svelte';
+	import type { BtnProps } from '@/lib/types';
 
-	let className: HTMLButtonAttributes['class'] = undefined;
-
-	export { className as class };
-	export let disabled: boolean = false;
-	export let formaction: string | null = null;
-	export let showSpinner: boolean | null = null;
+	let {
+		disabled = false,
+		formaction = null,
+		showSpinner = null,
+		children,
+		className
+	}: BtnProps = $props();
 </script>
 
 <Button
@@ -24,7 +23,5 @@
 		<iconify-icon icon="eos-icons:bubble-loading"></iconify-icon>
 	{/if}
 
-	<span>
-		<slot>Submit</slot>
-	</span>
+	{@render children()}
 </Button>
