@@ -1,0 +1,24 @@
+{
+	"lang": "en",
+	"dir": "ltr",
+	"name": "LSD Kit",
+	"short_name": "LSDkit",
+	"icons": [
+		{
+			"src": "/lsdkit.webp",
+			"sizes": "192x192",
+			"type": "image/webp"
+		},
+		{
+			"src": "/favicon.ico",
+			"sizes": "32x32"
+		}
+	],
+	"scope": "/",
+	"id": "LSDKit",
+	"start_url": "/",
+	"display": "fullscreen",
+	"orientation": "landscape",
+	"theme_color": "greenblack",
+	"background_color": "black"
+}
