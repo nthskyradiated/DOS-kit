@@ -25,7 +25,7 @@ export function createBaseMetaTags(url: URL): MetaTagsProps {
 		openGraph: {
 			type: 'website',
 			url: canonicalUrl,
-			locale: 'en_IE',
+			locale: 'en',
 			title: title,
 			description: description,
 			siteName: 'LSDKit',
@@ -53,22 +53,14 @@ export function createBaseMetaTags(url: URL): MetaTagsProps {
 
 		additionalLinkTags: [
 			{
-				rel: 'apple-touch-icon',
-				href: '/favicons/apple-touch-icon.png'
-			},
-			{
 				rel: 'icon',
 				type: 'image/ico',
 				href: '/favicon.ico'
 			},
 			{
-				rel: 'mask-icon',
-				href: '/favicons/mask-icon.svg'
-			},
-			{
 				rel: 'alternate icon',
-				type: 'image/png',
-				href: '/favicons/favicon-32x32.png'
+				type: 'image/webp',
+				href: '/lsdkit.webp'
 			},
 			{
 				rel: 'manifest',
