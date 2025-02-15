@@ -1,17 +1,18 @@
 import type { PageServerLoad } from './$types';
 import { error, type Actions } from '@sveltejs/kit';
-import { redirect } from 'sveltekit-flash-message/server';
+import { redirect, setFlash } from 'sveltekit-flash-message/server';
 import { message, superValidate } from 'sveltekit-superforms/server';
 import { eq } from 'drizzle-orm';
 import { Argon2id } from 'oslo/password';
 import { db } from '@/db/index';
-import { lucia } from '$lib/server/luciaUtils';
 import type { AlertMessageType } from '$lib/types';
 import { passwordResetPageActionRateLimiter } from '@/lib/server/rateLimiterUtils';
 import {
 	createAndSetSession,
 	isSameAsOldPassword,
-	verifyPasswordResetToken
+	verifyPasswordResetToken,
+	generateSessionToken,
+	invalidateAllSessions
 } from '@/lib/server/authUtils';
 import {
 	PasswordResetZodSchema,
@@ -125,7 +126,7 @@ export const actions: Actions = {
 				const hashedPassword = await new Argon2id().hash(passwordResetFormData.data.newPassword);
 
 				// Invalidate all user sessions before updating the password for security reasons
-				await lucia.invalidateUserSessions(userId);
+				await invalidateAllSessions(userId);
 
 				await db.transaction(async (trx) => {
 					// Delete the password reset token from the database
@@ -140,10 +141,24 @@ export const actions: Actions = {
 						.where(eq(usersTable.id, userId));
 				});
 
-				// create session to log the user in
-				await createAndSetSession(lucia, userId, event.cookies);
+				// Create and set new session
+				const sessionToken = generateSessionToken();
+				await createAndSetSession(userId, sessionToken, event.cookies);
+
+				// Set flash message and redirect to dashboard
+				await setFlash(
+					{ type: 'success', message: 'Your password has been reset. You are now logged in.' },
+					event
+				);
+
+				return redirect(303, DASHBOARD_ROUTE);
 			}
 		} catch (error) {
+			// Check if this is a redirect (which is not an error)
+			if (error instanceof Error && 'status' in error && error.status === 303) {
+				throw error; // Re-throw redirect to let SvelteKit handle it
+			}
+
 			console.error('Error in resetPassword action:', error);
 			return message(
 				passwordResetFormData,
@@ -156,13 +171,5 @@ export const actions: Actions = {
 				}
 			);
 		}
-		throw redirect(
-			DASHBOARD_ROUTE,
-			{
-				type: 'success',
-				message: 'Your password has been reset. You are now logged in.'
-			},
-			event.cookies
-		);
 	}
 };

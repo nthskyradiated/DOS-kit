@@ -8,7 +8,8 @@ import type { AlertMessageType } from '$lib/types';
 import {
 	checkIfCurrUserExists,
 	createAndSetSession,
-	createPasswordResetToken
+	createPasswordResetToken,
+	generateSessionToken
 } from '@/lib/server/authUtils';
 import { passwordResetEmailRateLimiter } from '@/lib/server/rateLimiterUtils';
 import { sendPasswordResetEmail } from '@/lib/server/emailAuthUtils';
@@ -20,7 +21,7 @@ import type {
 	passwordResetEmailZodSchema,
 	userLoginZodSchema
 } from '@/lib/zodValidators/zodAuthValidation';
-import { lucia } from '@/lib/server/luciaUtils';
+// import { lucia } from '@/lib/server/luciaUtils';
 import { zod } from 'sveltekit-superforms/adapters';
 import { DASHBOARD_ROUTE } from '@/lib/utils/navLinks';
 
@@ -106,7 +107,8 @@ export const actions: Actions = {
 			);
 		}
 
-		await createAndSetSession(lucia, existingUser.id, cookies);
+		const sessionToken = generateSessionToken();
+		await createAndSetSession(existingUser.id, sessionToken, cookies);
 
 		redirect(303, DASHBOARD_ROUTE);
 	},

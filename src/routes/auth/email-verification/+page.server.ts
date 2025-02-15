@@ -15,8 +15,8 @@ import { sendCodeRateLimiter, verifyCodeRateLimiter } from '@/lib/server/rateLim
 import db from '@/db';
 import { usersTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { lucia } from '@/lib/server/luciaUtils';
-import { createAndSetSession } from '@/lib/server/authUtils';
+// import { lucia } from '@/lib/server/luciaUtils';
+import { createAndSetSession, generateSessionToken } from '@/lib/server/authUtils';
 import { DASHBOARD_ROUTE } from '@/lib/utils/navLinks';
 
 // Function to parse user data from cookie
@@ -99,8 +99,8 @@ export const actions: Actions = {
 				.set({ isEmailVerified: true, authMethods })
 				.where(eq(usersTable.email, userData.email));
 		});
-		await createAndSetSession(lucia, userData.id, cookies);
-
+		const sessionToken = generateSessionToken();
+		await createAndSetSession(userData.id, sessionToken, event.cookies);
 		cookies.set(pendingUserVerification, '', {
 			maxAge: 0,
 			path: route('/auth/email-verification')
