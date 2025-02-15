@@ -4,7 +4,7 @@ import { and, eq } from 'drizzle-orm';
 import { route } from '@/lib/router';
 import { db } from '@/db';
 import { oAuthTable, usersTable } from '@/db/schema';
-import { createAndSetSession } from '@/lib/server/authUtils';
+import { createAndSetSession, generateSessionToken } from '@/lib/server/authUtils';
 import {
 	google,
 	google_oauth_code_verifier_cookieName,
@@ -12,7 +12,7 @@ import {
 } from '@/lib/server/OAuthUtils';
 import type { GoogleUser } from '@/lib/types';
 import { generateIdFromEntropySize } from 'lucia';
-import { lucia } from '@/lib/server/luciaUtils';
+// import { lucia } from '@/lib/server/luciaUtils';
 
 export async function GET(event: RequestEvent): Promise<Response> {
 	const code = event.url.searchParams.get('code');
@@ -79,7 +79,8 @@ export async function GET(event: RequestEvent): Promise<Response> {
 						.where(eq(usersTable.id, existingUser.id));
 				});
 			}
-			await createAndSetSession(lucia, existingUser.id, event.cookies);
+			const sessionToken = generateSessionToken();
+			await createAndSetSession(existingUser.id, sessionToken, event.cookies);
 		} else {
 			const userId = generateIdFromEntropySize(10);
 
@@ -99,7 +100,8 @@ export async function GET(event: RequestEvent): Promise<Response> {
 					providerUserId: googleUser.sub
 				});
 			});
-			await createAndSetSession(lucia, userId, event.cookies);
+			const sessionToken = generateSessionToken();
+			await createAndSetSession(userId, sessionToken, event.cookies);
 		}
 
 		return new Response(null, {

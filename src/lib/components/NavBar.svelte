@@ -17,19 +17,21 @@
 				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content side="bottom" class="dark:bg-inherit">
-				<DropdownMenu.Item class="pl-2 text-md" href={route('/protected/dashboard')}>Profile</DropdownMenu.Item>
-				<DropdownMenu.Item class="pl-2 text-md mb-4" href={route('/auth/logout')}>Logout</DropdownMenu.Item>
-				<ThemeToggler side="left"/>
+				<DropdownMenu.Item class="text-md pl-2" href={route('/protected/dashboard')}
+					>Profile</DropdownMenu.Item
+				>
+				<DropdownMenu.Item class="text-md mb-4 pl-2" href={route('/auth/logout')}
+					>Logout</DropdownMenu.Item
+				>
+				<ThemeToggler side="left" />
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</nav>
-	<nav class="ml-auto hidden sm:block w-80 pr-4 text-xl sm:pr-0 lg:mr-8 lg:w-96">
+	<nav class="ml-auto hidden w-80 pr-4 text-xl sm:block sm:pr-0 lg:mr-8 lg:w-96">
 		<ul class="flex justify-end gap-4">
 			<li><a href={route('/protected/dashboard')}><span>Profile</span></a></li>
 			<li><a href={route('/auth/logout')}><span>Logout</span></a></li>
-			<ThemeToggler side="bottom"/>
+			<ThemeToggler side="bottom" />
 		</ul>
 	</nav>
-
-
 </div>
