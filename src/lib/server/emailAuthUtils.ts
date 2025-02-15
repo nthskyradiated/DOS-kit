@@ -81,7 +81,6 @@ const sendEmail = async ({ email, subject, htmlContent }: EmailParams) => {
 	});
 
 	if (!success) {
-		// console.error({ error });
 		return { success: false, message: 'Failed to send email' };
 	}
 
