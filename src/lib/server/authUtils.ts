@@ -113,7 +113,7 @@ export const isSameAsOldPassword = async (userId: string, newPassword: string) =
 		.where(eq(usersTable.id, userId));
 
 	// If user doesn't exist or password is null, return false
-	if (!user || user.password === null) {
+	if (!user?.password) {
 		return false;
 	}
 
