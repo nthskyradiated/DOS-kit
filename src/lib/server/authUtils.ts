@@ -2,7 +2,7 @@ import db from '@/db';
 import { eq, or } from 'drizzle-orm';
 import { passwordResetTokensTable, sessionsTable, usersTable } from '@/db/schema';
 import type { UserInsertSchema } from '@/db/schema/users';
-import { Argon2id } from 'oslo/password';
+import { Argon2id } from '@/lib/utils/argon2id';
 import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from '@oslojs/encoding';
 import { sha256 } from '@oslojs/crypto/sha2';
 import type { RequestEvent, Cookies } from '@sveltejs/kit';

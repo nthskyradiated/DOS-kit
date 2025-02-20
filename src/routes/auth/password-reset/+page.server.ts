@@ -145,31 +145,30 @@ export const actions: Actions = {
 				const sessionToken = generateSessionToken();
 				await createAndSetSession(userId, sessionToken, event.cookies);
 
-				// Set flash message and redirect to dashboard
-				await setFlash(
-					{ type: 'success', message: 'Your password has been reset. You are now logged in.' },
-					event
-				);
-
-				return redirect(303, DASHBOARD_ROUTE);
-			}
-		} catch (error) {
-			// Check if this is a redirect (which is not an error)
-			if (error instanceof Error && 'status' in error && error.status === 303) {
-				throw error; // Re-throw redirect to let SvelteKit handle it
-			}
-
-			console.error('Error in resetPassword action:', error);
-			return message(
-				passwordResetFormData,
-				{
-					alertType: 'error',
-					alertText: 'There was a problem with your submission.'
-				},
-				{
-					status: 500
-				}
-			);
-		}
+            }  
+        } catch (error) {
+                    console.error('Error in resetPassword action:', error);
+                    return message(
+                        passwordResetFormData,
+                        {
+                            alertType: 'error',
+                            alertText: 'There was a problem with your submission.'
+                        },
+                        {
+                            status: 500
+                        }
+                    );
+                }
+                setFlash(
+            { type: 'success', message: 'Your password has been reset. You are now logged in.' },
+            event
+        );
+                throw redirect(302, DASHBOARD_ROUTE);
+            }
 	}
-};
+
+
+
+
+
+    
