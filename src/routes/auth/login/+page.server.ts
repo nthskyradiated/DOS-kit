@@ -1,7 +1,7 @@
 import { redirect as flashMessageRedirect } from 'sveltekit-flash-message/server';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { Argon2id } from 'oslo/password';
+import { Argon2id } from '@/lib/utils/argon2id';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { route } from '$lib/router';
 import type { AlertMessageType } from '$lib/types';
@@ -21,7 +21,6 @@ import type {
 	passwordResetEmailZodSchema,
 	userLoginZodSchema
 } from '@/lib/zodValidators/zodAuthValidation';
-// import { lucia } from '@/lib/server/luciaUtils';
 import { zod } from 'sveltekit-superforms/adapters';
 import { DASHBOARD_ROUTE } from '@/lib/utils/navLinks';
 

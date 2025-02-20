@@ -1,10 +1,9 @@
 import type { Actions, PageServerLoad } from './$types';
 import { eq } from 'drizzle-orm';
-import { Argon2id } from 'oslo/password';
+import { Argon2id } from '@/lib/utils/argon2id';
 import { redirect } from 'sveltekit-flash-message/server';
 import { message, superValidate } from 'sveltekit-superforms/client';
 import { route } from '$lib/router';
-// import { lucia } from '$lib/server/luciaUtils';
 import { usersTable } from '@/db/schema';
 import type { AlertMessageType } from '@/lib/types';
 import { db } from '@/db/index';

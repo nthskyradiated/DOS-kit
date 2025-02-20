@@ -1,14 +1,14 @@
-import { alphabet, generateRandomString } from 'oslo/crypto';
 import { emailVerificationCodeLen } from '../zodValidators/zodParams';
 import db from '@/db';
 import { emailVerificationCodesTable } from '@/db/schema';
-import { createDate, isWithinExpirationDate, TimeSpan } from 'oslo';
-import type { EmailParams } from '../types';
+import { createDate, isWithinExpirationDate, alphabet } from '@/lib/server/authUtils';
+import { TimeSpan, type EmailParams } from '../types';
 import { Resend } from 'resend';
 import { RESEND_API_KEY, PLUNK_API_KEY } from '$env/static/private';
 import { eq } from 'drizzle-orm';
 import { route } from '../router';
 import Plunk from '@plunk/node';
+import { generateRandomString, type RandomReader } from '@oslojs/crypto/random';
 
 const resend = new Resend(RESEND_API_KEY);
 // @ts-expect-error default
@@ -17,7 +17,13 @@ const plunk = new Plunk.default(PLUNK_API_KEY);
 export const pendingUserVerification = 'pendingUserVerification';
 
 export const generateEmailVerificationCode = async (userId: string, email: string) => {
-	const code = generateRandomString(emailVerificationCodeLen, alphabet('0-9'));
+	const random: RandomReader = {
+		read(bytes) {
+			crypto.getRandomValues(bytes);
+		}
+	};
+
+	const code = generateRandomString(random, alphabet('0-9'), emailVerificationCodeLen);
 
 	// This transaction block ensures atomicity and data integrity. If an error occurs while inserting the new code, the transaction will be rolled back, preventing the deletion of old verification codes. This maintains the state of the database.
 	await db.transaction(async (trx) => {

@@ -2,11 +2,12 @@ import db from '@/db';
 import { eq, or } from 'drizzle-orm';
 import { passwordResetTokensTable, sessionsTable, usersTable } from '@/db/schema';
 import type { UserInsertSchema } from '@/db/schema/users';
-import { createDate, isWithinExpirationDate, TimeSpan } from 'oslo';
 import { Argon2id } from 'oslo/password';
 import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from '@oslojs/encoding';
 import { sha256 } from '@oslojs/crypto/sha2';
 import type { RequestEvent, Cookies } from '@sveltejs/kit';
+import type { AlphabetPattern, Session, SessionValidationResult, User } from '../types';
+import { TimeSpan } from '../types';
 
 export const checkIfUserExists = async (email: string, username: string) => {
 	const [existingUser] = await db
@@ -42,6 +43,14 @@ export const checkIfCurrUserExists = async (email: string) => {
 export const insertNewUser = async (user: UserInsertSchema) => {
 	return await db.insert(usersTable).values(user);
 };
+
+export function isWithinExpirationDate(date: Date): boolean {
+	return Date.now() < date.getTime();
+}
+
+export function createDate(timeSpan: TimeSpan): Date {
+	return new Date(Date.now() + timeSpan.milliseconds());
+}
 
 export const createAndSetSession = async (
 	userId: string,
@@ -120,6 +129,28 @@ export const isSameAsOldPassword = async (userId: string, newPassword: string) =
 	const isSamePassword = await new Argon2id().verify(user.password, newPassword);
 
 	return isSamePassword;
+};
+
+export function alphabet(...patterns: AlphabetPattern[]): string {
+	const patternSet = new Set<AlphabetPattern>(patterns);
+	let result = '';
+	for (const pattern of patternSet) {
+		if (pattern === 'a-z') {
+			result += 'abcdefghijklmnopqrstuvwxyz';
+		} else if (pattern === 'A-Z') {
+			result += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		} else if (pattern === '0-9') {
+			result += '0123456789';
+		} else {
+			result += pattern;
+		}
+	}
+	return result;
+}
+
+export const generateIdFromEntropySize = (size: number) => {
+	const buffer = crypto.getRandomValues(new Uint8Array(size));
+	return encodeBase32LowerCaseNoPadding(buffer);
 };
 
 export const generateSessionToken = (): string => {
@@ -260,22 +291,3 @@ export const getUserSessions = async (userId: string): Promise<Session[]> => {
 		expiresAt: new Date(session.expiresAt * 1000)
 	}));
 };
-
-export type SessionValidationResult =
-	| { session: Session; user: User }
-	| { session: null; user: null };
-
-export interface Session {
-	id: string;
-	userId: string;
-	expiresAt: Date;
-}
-
-export interface User {
-	id: string;
-	email: string;
-	username: string | null;
-	name: string | null;
-	avatarUrl: string | null;
-	authMethods: string[];
-}

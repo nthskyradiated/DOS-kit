@@ -3,7 +3,7 @@ import { error, type Actions } from '@sveltejs/kit';
 import { redirect, setFlash } from 'sveltekit-flash-message/server';
 import { message, superValidate } from 'sveltekit-superforms/server';
 import { eq } from 'drizzle-orm';
-import { Argon2id } from 'oslo/password';
+import { Argon2id } from '@/lib/utils/argon2id';
 import { db } from '@/db/index';
 import type { AlertMessageType } from '$lib/types';
 import { passwordResetPageActionRateLimiter } from '@/lib/server/rateLimiterUtils';

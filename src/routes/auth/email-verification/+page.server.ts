@@ -15,7 +15,6 @@ import { sendCodeRateLimiter, verifyCodeRateLimiter } from '@/lib/server/rateLim
 import db from '@/db';
 import { usersTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-// import { lucia } from '@/lib/server/luciaUtils';
 import { createAndSetSession, generateSessionToken } from '@/lib/server/authUtils';
 import { DASHBOARD_ROUTE } from '@/lib/utils/navLinks';
 
