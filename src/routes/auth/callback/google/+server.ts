@@ -4,15 +4,17 @@ import { and, eq } from 'drizzle-orm';
 import { route } from '@/lib/router';
 import { db } from '@/db';
 import { oAuthTable, usersTable } from '@/db/schema';
-import { createAndSetSession, generateSessionToken } from '@/lib/server/authUtils';
+import {
+	createAndSetSession,
+	generateSessionToken,
+	generateIdFromEntropySize
+} from '@/lib/server/authUtils';
 import {
 	google,
 	google_oauth_code_verifier_cookieName,
 	google_oauth_state_cookieName
 } from '@/lib/server/OAuthUtils';
 import type { GoogleUser } from '@/lib/types';
-import { generateIdFromEntropySize } from 'lucia';
-// import { lucia } from '@/lib/server/luciaUtils';
 
 export async function GET(event: RequestEvent): Promise<Response> {
 	const code = event.url.searchParams.get('code');

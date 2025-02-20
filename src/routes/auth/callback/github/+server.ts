@@ -1,13 +1,15 @@
 import { github, github_oauth_state_cookieName } from '@/lib/server/OAuthUtils';
-// import { lucia } from '@/lib/server/luciaUtils';
 import { OAuth2RequestError } from 'arctic';
 import { type RequestEvent } from '@sveltejs/kit';
 import { db } from '@/db';
 import { oAuthTable, usersTable } from '@/db/schema';
 import { and, eq } from 'drizzle-orm';
-import { generateIdFromEntropySize } from 'lucia';
 import { route } from '@/lib/router';
-import { createAndSetSession, generateSessionToken } from '@/lib/server/authUtils';
+import {
+	createAndSetSession,
+	generateSessionToken,
+	generateIdFromEntropySize
+} from '@/lib/server/authUtils';
 import type { GitHubUser, GitHubEmail } from '@/lib/types';
 
 export async function GET(event: RequestEvent): Promise<Response> {
