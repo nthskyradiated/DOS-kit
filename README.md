@@ -1,6 +1,6 @@
-# LSD KIT
+# DOS KIT (formerly LSD Kit)
 
-### A Lucia / Sveltekit / Drizzle ORM template
+### A Drizzle / Oslo / Sveltekit template
 
 <pre>
 </pre>
