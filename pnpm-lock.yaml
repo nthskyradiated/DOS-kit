@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@lucia-auth/adapter-drizzle':
-        specifier: ^1.1.0
-        version: 1.1.0(drizzle-orm@0.30.10(@types/better-sqlite3@7.6.12)(better-sqlite3@10.1.0)(react@18.3.1))(lucia@3.2.2)
       '@node-rs/argon2':
         specifier: ^2.0.2
         version: 2.0.2
@@ -906,12 +903,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@lucia-auth/adapter-drizzle@1.1.0':
-    resolution: {integrity: sha512-iCTnZWvfI5lLZOdUHZYiXA1jaspIFEeo2extLxQ3DjP3uOVys7IPwBi7zezLIRu9dhro4H4Kji+7gSYyjcef2A==}
-    peerDependencies:
-      drizzle-orm: '>= 0.29 <1'
-      lucia: 3.x
 
   '@melt-ui/svelte@0.76.2':
     resolution: {integrity: sha512-7SbOa11tXUS95T3fReL+dwDs5FyJtCEqrqG3inRziDws346SYLsxOQ6HmX+4BkIsQh1R8U3XNa+EMmdMt38lMA==}
@@ -2479,9 +2470,6 @@ packages:
   lru-queue@0.1.0:
     resolution: {integrity: sha512-BpdYkt9EvGl8OfWHDQPISVpcl5xZthb+XPsbELj5AQXxIC8IriDZIQYjBJPEm5rS420sjZ0TLEzRcq5KdBhYrQ==}
 
-  lucia@3.2.2:
-    resolution: {integrity: sha512-P1FlFBGCMPMXu+EGdVD9W4Mjm0DqsusmKgO7Xc33mI5X1bklmsQb0hfzPhXomQr9waWIBDsiOjvr1e6BTaUqpA==}
-
   lucide-svelte@0.381.0:
     resolution: {integrity: sha512-bk9nlg6XHzvYoCA+rBLOFNsdJY6+qG/hRw4f6urUzvfnzlEue5+idoFeXXf2pCiNoSE/05IWper2cZ9BDV4EAQ==}
     peerDependencies:
@@ -3901,11 +3889,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
-
-  '@lucia-auth/adapter-drizzle@1.1.0(drizzle-orm@0.30.10(@types/better-sqlite3@7.6.12)(better-sqlite3@10.1.0)(react@18.3.1))(lucia@3.2.2)':
-    dependencies:
-      drizzle-orm: 0.30.10(@types/better-sqlite3@7.6.12)(better-sqlite3@10.1.0)(react@18.3.1)
-      lucia: 3.2.2
 
   '@melt-ui/svelte@0.76.2(svelte@5.20.2)':
     dependencies:
@@ -5482,11 +5465,6 @@ snapshots:
   lru-queue@0.1.0:
     dependencies:
       es5-ext: 0.10.64
-
-  lucia@3.2.2:
-    dependencies:
-      '@oslojs/crypto': 1.0.1
-      '@oslojs/encoding': 1.1.0
 
   lucide-svelte@0.381.0(svelte@5.20.2):
     dependencies:
