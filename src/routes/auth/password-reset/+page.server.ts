@@ -144,31 +144,24 @@ export const actions: Actions = {
 				// Create and set new session
 				const sessionToken = generateSessionToken();
 				await createAndSetSession(userId, sessionToken, event.cookies);
-
-            }  
-        } catch (error) {
-                    console.error('Error in resetPassword action:', error);
-                    return message(
-                        passwordResetFormData,
-                        {
-                            alertType: 'error',
-                            alertText: 'There was a problem with your submission.'
-                        },
-                        {
-                            status: 500
-                        }
-                    );
-                }
-                setFlash(
-            { type: 'success', message: 'Your password has been reset. You are now logged in.' },
-            event
-        );
-                throw redirect(302, DASHBOARD_ROUTE);
-            }
+			}
+		} catch (error) {
+			console.error('Error in resetPassword action:', error);
+			return message(
+				passwordResetFormData,
+				{
+					alertType: 'error',
+					alertText: 'There was a problem with your submission.'
+				},
+				{
+					status: 500
+				}
+			);
+		}
+		setFlash(
+			{ type: 'success', message: 'Your password has been reset. You are now logged in.' },
+			event
+		);
+		throw redirect(302, DASHBOARD_ROUTE);
 	}
-
-
-
-
-
-    
+};

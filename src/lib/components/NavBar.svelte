@@ -2,7 +2,7 @@
 	import { route } from '@/lib/router';
 	import ThemeToggler from './ThemeToggler.svelte';
 	import * as DropdownMenu from './ui/dropdown-menu';
-	import type { User } from 'lucia';
+	import type { User } from '@/lib/types';
 	import Button from './ui/button/button.svelte';
 	let { user } = $props<{ user: User }>();
 </script>

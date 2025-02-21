@@ -1,5 +1,5 @@
-import { hash, verify, type Options } from "@node-rs/argon2";
-import type { TypedArray } from "@/lib/types";
+import { hash, verify, type Options } from '@node-rs/argon2';
+import type { TypedArray } from '@/lib/types';
 
 export interface PasswordHashingAlgorithm {
 	hash(password: string): Promise<string>;
@@ -8,11 +8,11 @@ export interface PasswordHashingAlgorithm {
 
 // Using the official enum values
 const Algorithm = {
-    Argon2id: 2
+	Argon2id: 2
 } as const;
 
 const Version = {
-    V0x13: 1
+	V0x13: 1
 } as const;
 
 export class Argon2id implements PasswordHashingAlgorithm {
@@ -47,9 +47,10 @@ export class Argon2id implements PasswordHashingAlgorithm {
 		};
 
 		if (this.secret) {
-			const secretBuffer = this.secret instanceof ArrayBuffer
-				? new Uint8Array(this.secret)
-				: new Uint8Array(this.secret.buffer);
+			const secretBuffer =
+				this.secret instanceof ArrayBuffer
+					? new Uint8Array(this.secret)
+					: new Uint8Array(this.secret.buffer);
 			options.secret = secretBuffer;
 		}
 
@@ -57,13 +58,13 @@ export class Argon2id implements PasswordHashingAlgorithm {
 	}
 
 	public async hash(password: string): Promise<string> {
-		return await hash(password.normalize("NFKC"), this.getOptions());
+		return await hash(password.normalize('NFKC'), this.getOptions());
 	}
 
 	public async verify(hash: string, password: string): Promise<boolean> {
 		if (!hash || !password) {
 			return false;
 		}
-		return await verify(hash, password.normalize("NFKC"), this.getOptions());
+		return await verify(hash, password.normalize('NFKC'), this.getOptions());
 	}
 }

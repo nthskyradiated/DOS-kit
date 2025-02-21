@@ -7,7 +7,11 @@ import { usersTable } from '@/db/schema';
 import { eq } from 'drizzle-orm/expressions';
 import { Argon2id } from '@/lib/utils/argon2id';
 import { RegisterUserZodSchema } from '@/lib/zodValidators/zodAuthValidation';
-import { checkIfUserExists, insertNewUser, generateIdFromEntropySize } from '@/lib/server/authUtils';
+import {
+	checkIfUserExists,
+	insertNewUser,
+	generateIdFromEntropySize
+} from '@/lib/server/authUtils';
 import {
 	sendEmailVerificationCode,
 	generateEmailVerificationCode,
