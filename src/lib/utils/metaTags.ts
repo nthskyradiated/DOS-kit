@@ -1,13 +1,13 @@
 import type { MetaTagsProps } from 'svelte-meta-tags';
 
 export function createBaseMetaTags(url: URL): MetaTagsProps {
-	const title = 'LSD Kit';
-	const description = 'Lucia-auth Drizzle-ORM Sveltekit template';
+	const title = 'DOS Kit';
+	const description = 'Drizzle Oslo Sveltekit template';
 	const canonicalUrl = new URL(url.pathname, url.origin).href;
 
 	return {
 		title: title,
-		titleTemplate: '%s | LSD is the way',
+		titleTemplate: '%s | DOS kit',
 		description: description,
 		canonical: canonicalUrl,
 
@@ -28,7 +28,7 @@ export function createBaseMetaTags(url: URL): MetaTagsProps {
 			locale: 'en',
 			title: title,
 			description: description,
-			siteName: 'LSDKit',
+			siteName: 'DOSKit',
 			images: [
 				{
 					url: 'https://www.example.ie/og-image.jpg',
