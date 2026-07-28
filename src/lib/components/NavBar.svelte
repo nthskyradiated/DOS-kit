@@ -11,10 +11,12 @@
 	<h1 class="ml-4 py-10 text-left">Logged in as: {user.name ?? user.username}</h1>
 	<nav class="ml-auto block pr-8 sm:hidden">
 		<DropdownMenu.Root>
-			<DropdownMenu.Trigger asChild let:builder>
-				<Button builders={[builder]} variant="outline" size="sm" class="px-2 text-xl">
+			<DropdownMenu.Trigger asChild >
+		{#snippet child({ props })}
+    <Button {...props} variant="outline" size="sm" class="px-2 text-xl">
 					<span>Menu</span>
 				</Button>
+        {/snippet}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content side="bottom" class="dark:bg-inherit">
 				<DropdownMenu.Item class="text-md pl-2" href={route('/protected/dashboard')}
