@@ -4,10 +4,10 @@
 	import { getFlash } from 'sveltekit-flash-message';
 	import { toast } from 'svelte-sonner';
 	import { Toaster } from '$lib/components/ui/sonner';
-	import { MetaTags } from 'svelte-meta-tags';
+	import { MetaTags, deepMerge } from 'svelte-meta-tags';
 	import { setupViewTransition } from 'sveltekit-view-transition';
 	import { ModeWatcher } from 'mode-watcher';
-	import extend from 'just-extend';
+// 	import extend from 'just-extend';
 	import { ProgressBar } from '@prgm/sveltekit-progress-bar';
 	import NavBar from '@/lib/components/NavBar.svelte';
 	import Footer from '@/lib/components/Footer.svelte';
@@ -21,8 +21,11 @@
 			toast.info($flash.message);
 		}
 	});
-	let metaTags = $state(extend(true, {}, data.baseMetaTags, page.data.pageMetaTags));
-	setupViewTransition();
+  let metaTags = $derived(
+	deepMerge(data.baseMetaTags ?? {}, page.data.pageMetaTags ?? {})
+);
+//	let metaTags = $state(extend(true, {}, data.baseMetaTags, page.data.pageMetaTags));
+setupViewTransition();
 </script>
 
 <ProgressBar color="#22c55e" zIndex={100} intervalTime={100} />
